@@ -20,3 +20,26 @@
 // Sample Output2:
 // ---------------
 // 1 1
+
+//Code for maximum number:
+import java.util.*;
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length;
+        int[] arr = new int[n - k + 1];
+        Deque<Integer> q = new ArrayDeque<>();
+        int l = 0, r = 0, i = 0;
+        while (r < n) {
+            while (!q.isEmpty() && q.peekLast() < nums[r]) q.pollLast();
+            q.addLast(nums[r]);
+            if (r - l + 1 == k) {
+                arr[i] = q.peekFirst();
+                if (nums[l] == q.peekFirst()) q.pollFirst();
+                i++;
+                l++;
+            }
+            r++;
+        }
+        return arr;
+    }
+}
