@@ -32,3 +32,28 @@
 // 192.0.2.0 192.0.2.255
 
 // */
+import java.util.*;
+public class Q2{
+    public static String getIp(int n)
+    {
+        String ans = String.format("%d.%d.%d.%d", 
+        (n >> 24) & 0xFF,
+        (n >> 16) & 0xFF,
+        (n >> 8) & 0xFF,
+        n & 0xFF);
+        return ans;
+    }
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        int n = sc.nextInt();
+        int mask = 0xFFFFFFFF << (32-n);
+        String[] temp = s.split("\\.");
+        int ip = 0;
+        for(String t : temp) ip = (ip << 8) | Integer.parseInt(t);
+        int network = ip & mask;
+        int broadcast = ip | ~mask;
+        System.out.println(getIp(network) + " " + getIp(broadcast));
+    }
+}
