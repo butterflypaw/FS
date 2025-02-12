@@ -34,26 +34,24 @@
 // */
 import java.util.*;
 public class Q2{
-    public static String getIp(int n)
-    {
-        String ans = String.format("%d.%d.%d.%d", 
-        (n >> 24) & 0xFF,
-        (n >> 16) & 0xFF,
-        (n >> 8) & 0xFF,
-        n & 0xFF);
-        return ans;
+    public static int getIp(String s){
+        String[] temp = s.split("\\.");
+        int ip = 0;
+        for(String t : temp) ip = (ip << 8) | Integer.parseInt(t);
+        return ip;
+    }
+    public static String getString(int s){
+        return String.format("%d.%d.%d.%d", (s >> 24) & 0xFF, (s >> 16) & 0xFF, (s >> 8) & 0xFF, s & 0xFF);
     }
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
-        String s = sc.next();
+        String s = sc.nextLine();
         int n = sc.nextInt();
         int mask = 0xFFFFFFFF << (32-n);
-        String[] temp = s.split("\\.");
-        int ip = 0;
-        for(String t : temp) ip = (ip << 8) | Integer.parseInt(t);
+        int ip = getIp(s);
         int network = ip & mask;
         int broadcast = ip | ~mask;
-        System.out.println(getIp(network) + " " + getIp(broadcast));
+        System.out.println(getString(network) + " " + getString(broadcast));
     }
 }

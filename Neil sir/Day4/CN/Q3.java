@@ -33,24 +33,27 @@
 
 import java.util.*;
 public class Q3{
-    public static int checkIp(int n, int mask){
-        return n & mask;
-    }
-    public static int getIp(String s)
-    {
+    public static int getIp(String s){
         String[] temp = s.split("\\.");
         int ip = 0;
         for(String t : temp) ip = (ip << 8) | Integer.parseInt(t);
         return ip;
     }
-    public static void main(String[] args)
-    {
+    public static int check(int ip, int mask){
+        return ip & mask;
+    }
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        String s1 = sc.next(), s2 = sc.next();
+        String[] ips = sc.nextLine().split(" ");
         int n = sc.nextInt();
         int mask = 0xFFFFFFFF << (32-n);
-        int ip1 = getIp(s1);
-        int ip2 = getIp(s2);
-        System.out.println(checkIp(ip1, mask) == checkIp(ip2, mask) ? true : false);
+        int[] intIp = new int[2];
+        for(int i = 0; i < 2; i++){
+            intIp[i] = getIp(ips[i]);
+        }
+        for(int  i = 0; i < 2; i++) {
+            intIp[i] = check(intIp[i], mask);
+        }
+        System.out.println(intIp[0] == intIp[1]);
     }
 }
