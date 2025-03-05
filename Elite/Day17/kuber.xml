@@ -1,0 +1,40 @@
+<!--
+Visual Representation of the Connection
+
+                +----------------------+
+                |  Kubernetes Pod       |
+                |  (Shared Namespace)   |
+                +----------------------+
+                         |
+    +--------------------------------------------+
+    |  Shared Volume (/logs) (emptyDir)          |
+    |  - Provides persistent log storage         |
+    |  - Accessible by both containers           |
+    +--------------------------------------------+
+                         |
+  ----------------------------------------------
+  |                                            |
+  |                                            |
+  |                                            |
++---------------------------+      +----------------------------+
+|  Flask App (app.py)       |      | Logger (logger.py)        |
+|  - Handles API requests   |      | - Monitors `/logs/app.log` |
+|  - Writes logs to `/logs` |      | - Reads logs continuously  |
++---------------------------+      +----------------------------+
+
+
+
+Provide the token, and the URLs are in the following format:
+
+kubdashurl ->  https://10.xx.xx.xx:xxxxx
+
+       url ->  http://10.xx.xx.xx:xxxxx
+
+
+-->
+
+<config>
+   <kubdashadmintoken value="eyJhbGciOiJSUzI1NiIsImtpZCI6IlBjNkhfSVhwN29TQUxYV0dsMURKYlk1ZnYyd0dCRFVET3NtNFVvOUVCa1kifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzQxMTc5NTc3LCJpYXQiOjE3NDExNzU5NzcsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbi11c2VyIiwidWlkIjoiODAwYzAwMTEtNDJmZi00MmNiLWFhNGQtZmQ5ZmU1YjFiZTQwIn19LCJuYmYiOjE3NDExNzU5NzcsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDphZG1pbi11c2VyIn0.i7LSpswlmlrcFXyh_iFQY-_Si9BpF4cACZqzv46PoQSjrvXKAWX_3Z6qHWwi70VZNbXYkGlnhTH98KdcxLWLUrYcDjUxILr-CZ7TEquuRIygA9Uc1GgiLnFwwdIUG4856j3MYcQHLu6_ltZH1DoufSPPVlPDMGnsczOAYZAc3jgNOEe3-AMgpwxFEqz9XLSqLp6H67PDp62L-Hkhlvlcc91xnjKFKIE7m8rvty83zul7xL9V4vfmcMElR-9Ucs-qPSbNpPyLQ3Sf6M5BT7utENsES16mKI5a28LtJGZWBbbxB_5Y7IZ-0z2SoBTgexQnuX_LWl7Uvt75aBqUYxnjiw"></kubdashadmintoken>
+    <kubdashurl value="https://10.11.25.175:32016"></kubdashurl>
+    <url value="http://10.11.25.175:30001"></url>
+</config>
