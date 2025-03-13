@@ -60,7 +60,7 @@ public class Q3{
                 c2++;
                 j++;
             }
-            if (c1 < c2) return false;
+            if (c1 < c2 || (c1 > c2 && c1 <= 2)) return false;
         }
         return i == m && j == n;
     }

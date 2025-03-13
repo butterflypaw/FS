@@ -63,21 +63,17 @@ public class Q2program{
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
         int n = sc.nextInt();
-        int l = 0;
+        int l = 0, r = 0;
         int ans = Integer.MAX_VALUE;
-        while(l < s.length() - n)
-        {
-            int steps = 0;
-            int count = 0;
-            int r = l;
-            while(count < n)
-            {
-                if(s.charAt(r) == 'R') steps++;
-                count++;
-                r++;
+        int count = 0;
+        while(r < s.length()){
+            if(s.charAt(r) == 'R') count++;
+            if(r-l+1 == n){
+                ans = Math.min(ans, count);
+                if(s.charAt(l) == 'R') count--;
+                l++;
             }
-            ans = Math.min(ans, steps);
-            l++;
+            r++;
         }
         System.out.println(ans);
         sc.close();
